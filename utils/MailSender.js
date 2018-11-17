@@ -15,6 +15,6 @@ export const sendMail =(toMail,subject,text)=>
       };
       transporter.sendMail(mailOptions, function(error, info){
         if(error){
-        log.info('Mail sending failed', error);
+        
         }});
 }

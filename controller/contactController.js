@@ -1,6 +1,5 @@
 import Action from '../modal/Action.js';
 import formidable from 'formidable';
-import {createContainer,upload} from '../utils/azureBlob.js';
 import {sendMail} from '../utils/MailSender.js';
 export const registerMessage = (req,res) => {
  var action=new Action({place:req.query.place,device:req.query.device,action:req.query.action});
