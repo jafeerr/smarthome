@@ -2,7 +2,9 @@ import Action from '../modal/Action.js';
 import formidable from 'formidable';
 import {sendMail} from '../utils/MailSender.js';
 export const registerMessage = (req,res) => {
- var action=new Action({place:req.query.place,device:req.query.device,action:req.query.action});
+  var result=req.body.queryResult.parameters
+  console.log("debug"+result.action)
+ var action=new Action({place:result.place,device:result.device,action:result.action});
  action.save(function (err) {
    if (err) return handleError(err);
    // saved!
