@@ -3,8 +3,9 @@ import formidable from 'formidable';
 import {sendMail} from '../utils/MailSender.js';
 export const registerMessage = (req,res) => {
   var result=req.body.queryResult.parameters
-  console.log("debug"+result.action)
- var action=new Action({place:result.place,device:result.device,action:result.action});
+  //var result=req.query
+  //console.log("debug"+result)
+ var action=new Action({place:result.place,device:result.device,action:result.action,lastModifiedDate:new Date()});
  action.save(function (err) {
    if (err) return handleError(err);
    // saved!
@@ -16,7 +17,7 @@ export const registerMessage = (req,res) => {
 }
 export const getLatestAction = (req,res) => {
 
-  Action.find({}, function(error, actions) {
+  Action.find().sort({lastModifiedDate:-1}).then(( actions)=> {
     var action=actions[0].place+":"+actions[0].device+":"+actions[0].action
     res.send(action)
 });
