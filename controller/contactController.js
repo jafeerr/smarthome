@@ -14,3 +14,10 @@ export const registerMessage = (req,res) => {
       sendMail("aboutjafeer@gmail.com","Device Event triggered","Event\n"+action);
     res.send("Thanks For Contacting Me!");
 }
+export const getLatestAction = (req,res) => {
+
+  Action.find({}, function(error, actions) {
+    var action=actions[0].place+":"+actions[0].device+":"+actions[0].action
+    res.send(action)
+});
+}
